@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.app-container h2,
+.app-container h3 {
+  font-weight: 700;
+  color: #2d3436;
+}
+.app-container h2 {
+  font-size: 1.75rem;
+  margin: 0.5rem 0 0.75rem;
+}
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2d3436;
+  margin: 1rem 0 0.5rem;
+}
+.section-title--danger {
+  color: #e74c3c;
+}
+.section-title--success {
+  color: #27ae60;
+}
+.section-card {
+  border: 1px solid #e6e9eb;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  text-align: left;
+}
+.section-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+}
+.section-card li {
+  margin: 0.25rem 0;
+  line-height: 1.6;
+}
+.metric {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  align-items: baseline;
+  width: 100%;
+  margin: 0.25rem auto;
+}
+.metric-label {
+  font-weight: 700;
+}
+.metric-value,
+.list-value {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+  color: inherit;
+}
+.metric-value {
+  font-size: 1.25rem;
+}
