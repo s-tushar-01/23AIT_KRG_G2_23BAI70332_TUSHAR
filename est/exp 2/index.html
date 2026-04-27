@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paginated List Preview</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f7f7f7;
+        margin: 0;
+        padding: 24px;
+      }
+      #root {
+        max-width: 640px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 24px;
+        border-radius: 12px;
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+      }
+      button {
+        padding: 10px 16px;
+        border: 1px solid #bbb;
+        border-radius: 6px;
+        background: #fff;
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const items = Array.from({ length: 20 }, (_, index) => ({
+        id: index + 1,
+        title: `Item ${index + 1}`,
+        description: `Description for item ${index + 1}`,
+      }))
+
+      const ITEMS_PER_PAGE = 5
+
+      function PaginatedList() {
+        const [currentPage, setCurrentPage] = React.useState(1)
+        const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE)
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
+        const currentItems = items.slice(startIndex, startIndex + ITEMS_PER_PAGE)
+
+        return (
+          <div>
+            <h1>Paginated List</h1>
+            <div>
+              {currentItems.map((item) => (
+                <div
+                  key={item.id}
+                  style={{
+                    padding: '12px 16px',
+                    border: '1px solid #ddd',
+                    borderRadius: 8,
+                    marginBottom: 10,
+                  }}
+                >
+                  <strong>{item.title}</strong>
+                  <p style={{ margin: '8px 0 0' }}>{item.description}</p>
+                </div>
+              ))}
+            </div>
+
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginTop: 20,
+              }}
+            >
+              <button onClick={() => setCurrentPage((page) => Math.max(page - 1, 1))} disabled={currentPage === 1}>
+                Previous
+              </button>
+
+              <span>
+                Page {currentPage} of {totalPages}
+              </span>
+
+              <button onClick={() => setCurrentPage((page) => Math.min(page + 1, totalPages))} disabled={currentPage === totalPages}>
+                Next
+              </button>
+            </div>
+          </div>
+        )
+      }
+
+      ReactDOM.createRoot(document.getElementById('root')).render(<PaginatedList />)
+    </script>
+  </body>
+</html>
